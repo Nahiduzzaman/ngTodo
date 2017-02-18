@@ -86,8 +86,14 @@ body {
   display: inline-block;
 }
 
-form { margin: 0 auto; }
+form { margin: 0 auto; width: 36% }
 
 .score{
   font-size: 25px;
+}
+
+table {
+  display: block;
+  height: 400px;
+  overflow-y: scroll;
 }

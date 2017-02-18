@@ -41,15 +41,7 @@ angular
       
   })
   .service('StatisticService', function($filter) {
-   /*var number_of_ball = 0;
-   var wicket = 0;
-   var run = 0;
-   var total_run = 0;
-   var score = 0;
-   var over = 0;*/
    var scoreArray = [0,1,2,3,4,6,'W','WD','NB'];
-   //var statistics = [];
-   
    if(JSON.parse(localStorage.getItem("gameData")) == null){
       var statistics = [];
       var number_of_ball = 0;
@@ -58,6 +50,7 @@ angular
       var total_run = 0;
       var score = 0;
       var over = 0;
+      var comments = '';
    }
    else{
       var statistics = JSON.parse(localStorage.getItem("gameData"));
@@ -66,7 +59,8 @@ angular
       var run = statistics[statistics.length-1].run_per_ball;
       var total_run = statistics[statistics.length-1].total_run;
       var score = statistics[statistics.length-1].score;
-      var over = statistics[statistics.length-1].over; 
+      var over = statistics[statistics.length-1].over;
+      var comments = statistics[statistics.length-1].comments;
    }
 
    var gameData = {
@@ -77,6 +71,41 @@ angular
       total_run: null,
       wicket: null
    };
+
+   function allcomments(score){
+      switch (score) {
+         case 0:
+            comments = 'No run! dot ball';
+            break;
+         case 1:
+            comments = 'Single on the offside.';
+            break;
+         case 2:
+            comments = 'Good running between the wicket! 2 runs.';
+            break;
+         case 3:
+            comments = 'They have taken 3 runs! excellent running';
+            break;
+         case 4:
+            comments = 'Four! great shot!';
+            break;
+         case 6:
+            comments = 'Six! Thats a huge six!';
+            break;
+         case 'WD':
+            comments = 'Wide delivery way outside off stamp!';
+            break;
+         case 'NB':
+            comments = 'No Ball! another extra run added to the scoreboard';
+            break;
+         case 'W':
+            comments = 'Out! a wicket fall';
+            break;
+         default: 
+            comments = 'Its raining';
+      }
+      return comments;
+   }
 
 
    return {
@@ -89,31 +118,30 @@ angular
             over++;
          }
 
-         
          //console.log('initial','Overs: '+over+'.'+number_of_ball,'Score: '+score);
          switch (score) {
             case 'WD':
                run = 1;
                number_of_ball = number_of_ball - 1;
+               comments: allcomments('WD');
                break;
             case 'NB':
                run = 1;
                number_of_ball = number_of_ball - 1;
+               comments: allcomments('NB');
                break;
             case 'W':
                run = 0;
                wicket = wicket + 1;
+               comments: allcomments('W');
                break;
             default: 
                run = score;
+               comments: allcomments(run);
          }
          total_run = total_run + run;
 
-         console.log('final','Overs: '+over+'.'+number_of_ball,'Score: '+score, 'RPB: '+run, 'Total: '+total_run,'Wicket:'+wicket);
-
-         /*if(number_of_ball < 0){
-            number_of_ball = number_of_ball + 1;
-         }*/
+         console.log('final','Overs: '+over+'.'+number_of_ball,'Score: '+score, 'RPB: '+run, 'Total: '+total_run,'Wicket:'+wicket, 'Comments:'+comments );
          console.log(number_of_ball)
          gameData = {
             ball: number_of_ball<0 ? 5:number_of_ball,
@@ -121,7 +149,8 @@ angular
             score: score,
             run_per_ball: run,
             total_run: total_run,
-            wicket: wicket
+            wicket: wicket,
+            comments: comments
          }
          statistics.push(gameData);
          console.log('statistics',statistics);

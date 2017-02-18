@@ -19,14 +19,8 @@ angular.module('todoApp')
   		$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
   		console.log($scope.gameData);
   	}
-
   	$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
-
-  	
-
-
-
-	$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
-	console.log('getStats',$scope.getStats);
+  	$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
+  	console.log('getStats',$scope.getStats);
   	    
   });
