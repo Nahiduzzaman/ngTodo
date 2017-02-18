@@ -1,14 +1,15 @@
 <div class="container">
 
   <div class="score">
-	  <b>{{teamData.to_bat}}: 27/0</b><br>
-	  <label>Overs:</label><br>
+	  <b>{{teamData.to_bat}}: {{gameData[gameData.length-1].total_run}}/{{gameData[gameData.length-1].wicket}}</b><br>
+	  <label>Overs:{{gameData[gameData.length-1].over}}.{{gameData[gameData.length-1].ball}}</label><br>
 	  <label>Bowling:</label>
 	  <b>{{teamData.to_bowl}}</b>
   </div>
 
   <div>
      <a class="btn btn-default" ng-click="bowl()" >Bowl</a>
+     <a class="btn btn-default" href="#/">New Game</a>
   </div>
 
   <table class="table table-striped">

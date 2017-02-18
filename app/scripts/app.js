@@ -128,9 +128,9 @@ angular
          return statistics;
       },
 
-      get: function(ball,overs,data) {
+      get: function(ball,over,data) {
         console.log('ball',ball);
-        console.log('overs',overs);
+        console.log('over',over);
         console.log('data',data);
         if(data){
            var scoresbyball = $filter('filter')(data, {'ball':ball,'over':over});

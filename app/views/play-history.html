@@ -1,7 +1,14 @@
 
-{{getStats.ball}}
-{{getStats.over}}
-{{getStats.run}}
+ <div class="score">
+	  <b>{{teamData.to_bat}}: {{getStats.total_run}}/{{getStats.wicket}}</b><br>
+	  <label>Overs:{{getStats.over}}.{{getStats.ball}}</label><br>
+	  <label>Bowling:</label>
+	  <b>{{teamData.to_bowl}}</b>
+ </div>
+
+ <div>
+     <a class="btn btn-default" href="#/play">Full Scorecard</a>
+ </div>
 
 <div class="container">          
   <table class="table table-striped">
@@ -14,7 +21,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in gameData | limitTo:getStats.indexOfScore+1">
-        <td>{{item.over}}.{{item.ball}}</td>
+        <td><a href="#/play/{{item.over}}/{{item.ball}}">{{item.over}}.{{item.ball}}</a></td>
         <td>{{item.run_per_ball}}</td>
         <td>{{item.score}}</td>
       </tr>     
