@@ -1,0 +1,23 @@
+
+{{getStats.ball}}
+{{getStats.over}}
+{{getStats.run}}
+
+<div class="container">          
+  <table class="table table-striped">
+     <thead>
+      <tr>
+        <th>Overs</th>
+        <th>Run per Ball</th>
+        <th>Scenario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in gameData | limitTo:getStats.indexOfScore+1">
+        <td>{{item.over}}.{{item.ball}}</td>
+        <td>{{item.run_per_ball}}</td>
+        <td>{{item.score}}</td>
+      </tr>     
+    </tbody>
+  </table>
+</div>

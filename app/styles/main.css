@@ -81,3 +81,13 @@ body {
     border-bottom: 0;
   }
 }
+
+.sidebyside{
+  display: inline-block;
+}
+
+form { margin: 0 auto; }
+
+.score{
+  font-size: 25px;
+}
