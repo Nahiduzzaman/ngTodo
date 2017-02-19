@@ -43,33 +43,33 @@ angular
   .service('StatisticService', function($filter) {
    var scoreArray = [0,1,2,3,4,6,'W','WD','NB'];
    if(JSON.parse(localStorage.getItem("gameData")) == null){
-      var statistics = [];
-      var number_of_ball = 0;
-      var wicket = 0;
-      var run = 0;
-      var total_run = 0;
-      var score = 0;
-      var over = 0;
-      var comments = '';
+        var statistics = [];
+        var number_of_ball = 0;
+        var wicket = 0;
+        var run = 0;
+        var total_run = 0;
+        var score = 0;
+        var over = 0;
+        var comments = '';
    }
    else{
-      var statistics = JSON.parse(localStorage.getItem("gameData"));
-      var number_of_ball = statistics[statistics.length-1].ball;
-      var wicket = statistics[statistics.length-1].wicket;
-      var run = statistics[statistics.length-1].run_per_ball;
-      var total_run = statistics[statistics.length-1].total_run;
-      var score = statistics[statistics.length-1].score;
-      var over = statistics[statistics.length-1].over;
-      var comments = statistics[statistics.length-1].comments;
+        var statistics = JSON.parse(localStorage.getItem("gameData"));
+        var number_of_ball = statistics[statistics.length-1].ball;
+        var wicket = statistics[statistics.length-1].wicket;
+        var run = statistics[statistics.length-1].run_per_ball;
+        var total_run = statistics[statistics.length-1].total_run;
+        var score = statistics[statistics.length-1].score;
+        var over = statistics[statistics.length-1].over;
+        var comments = statistics[statistics.length-1].comments;
    }
 
    var gameData = {
-      ball: null,
-      over: null,
-      score: null,
-      run_per_ball: null,
-      total_run: null,
-      wicket: null
+        ball: null,
+        over: null,
+        score: null,
+        run_per_ball: null,
+        total_run: null,
+        wicket: null
    };
 
    function allcomments(score){
@@ -110,7 +110,7 @@ angular
 
    return {
       play: function(){
-         number_of_ball++;
+        number_of_ball++;
      
          score = scoreArray[Math.floor(Math.random() * scoreArray.length)];
          if(number_of_ball == 6){
