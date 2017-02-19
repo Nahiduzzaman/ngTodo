@@ -19,10 +19,10 @@ angular
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/start');
     $stateProvider
       .state('start', {
-        url: '/',
+        url: '/start',
         templateUrl: 'views/start.html',
         controller: 'StartCtrl'
       })

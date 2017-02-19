@@ -10,7 +10,7 @@
         <div class="sidebyside">
           <div class="radio">
             <label class="radio-inline control-label">
-              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="a" ng-value="game.country1">
+              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="a" ng-value="game.country1" required>
             </label>
           </div>
         </div>
@@ -26,13 +26,15 @@
         <div class="sidebyside">
           <div class="radio">
             <label class="radio-inline control-label">
-              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="b" ng-value="game.country2">
+              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="b" ng-value="game.country2" required>
             </label>
           </div>
         </div>
+
+        <div>
+          <a href="#/play" class="btn btn-default" ng-click="setGame(game)">Play</a>
+        </div>
     </form>
 
-    <div>
-      <a href="#/play" class="btn btn-default" ng-click="setGame(game)">Play</a>
-    </div>
+    
 </div>

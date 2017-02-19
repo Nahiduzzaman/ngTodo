@@ -8,13 +8,14 @@
  * Controller of the todoApp
  */
 angular.module('todoApp')
-  .controller('PlayCtrl', function ($stateParams,StatisticService,$scope) {
+  .controller('PlayCtrl', function ($stateParams,StatisticService,$scope,$window) {
    var gameData = [];
    $scope.resetData = function(){
       console.log('removeItem');
       $scope.gameData = localStorage.removeItem("gameData");
       $scope.teamData = localStorage.removeItem("teamData");
       gameData = [];
+      $window.location.reload();
    }
   	
   	$scope.teamData = JSON.parse(localStorage.getItem("teamData"));

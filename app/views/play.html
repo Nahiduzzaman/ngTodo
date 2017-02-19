@@ -8,8 +8,9 @@
   </div>
 
   <div>
-     <a class="btn btn-default" ng-click="bowl()" >Bowl</a>
-     <a class="btn btn-default" ng-click="resetData()" href="#/">New Game</a>
+     <a ng-if="gameData[gameData.length-1].over != 2" class="btn btn-primary" ng-click="bowl()" >Bowl</a>
+     <a ng-if="gameData[gameData.length-1].over == 2" class="btn btn-danger" href="#/start" ng-click="resetData()" >Finish</a>
+     <a class="btn btn-success" ng-click="resetData()" href="#/start" >New Game</a>
   </div>
 
   <table class="table table-striped">
