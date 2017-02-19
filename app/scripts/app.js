@@ -145,7 +145,7 @@ angular
          console.log(number_of_ball)
          gameData = {
             ball: number_of_ball<0 ? 5:number_of_ball,
-            over: number_of_ball<0 ? ((over-1)<1 ? 0:over):over,
+            over: number_of_ball<0 ? ((over-1)<1 ? 0:(over-1)):over,
             score: score,
             run_per_ball: run,
             total_run: total_run,
