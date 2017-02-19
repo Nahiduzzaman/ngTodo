@@ -8,7 +8,7 @@
  * Controller of the todoApp
  */
 angular.module('todoApp')
-  .controller('StartCtrl', function (StatisticService,$scope) {
+    .controller('StartCtrl', function (StatisticService,$scope) {
      	$scope.game = {
      		country1: 'Bangladesh',
      		country2: 'India',     		
@@ -25,4 +25,4 @@ angular.module('todoApp')
 			localStorage.setItem("teamData", JSON.stringify(game));
      	}
     
-  });
+    });

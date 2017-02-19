@@ -7,7 +7,12 @@
  </div>
 
  <div>
-     <a class="btn btn-default" href="#/play">Full Scorecard</a>
+     <a ng-if="gameData[gameData.length-1].over != 2" 
+        href="#/play/{{seconds}}/{{gameData[gameData.length-1].over}}/{{gameData[gameData.length-1].ball}}"
+        class="btn btn-primary" ng-click="bowl()">
+        Bowl
+     </a>
+     <a class="btn btn-warning" href="#/play">Full Scorecard</a>
  </div>
 
 <div class="container">          

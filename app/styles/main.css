@@ -97,3 +97,9 @@ table {
   /* height: 400px;
   overflow-y: scroll; */
 }
+
+.btn-warning {
+    color: #fcf8e3;
+    background-color: #f05d4e;
+    border-color: #eea236;
+}

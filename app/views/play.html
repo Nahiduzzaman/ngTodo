@@ -2,13 +2,24 @@
 
   <div class="score">
 	  <b>{{teamData.to_bat}}: {{gameData[gameData.length-1].total_run}}/{{gameData[gameData.length-1].wicket}}</b><br>
-	  <label>Overs:{{gameData[gameData.length-1].over}}.{{gameData[gameData.length-1].ball}}</label><br>
-	  <label>Bowling:</label>
+	  <label>
+      Overs: {{gameData[gameData.length-1].over}}.{{gameData[gameData.length-1].ball}}
+    </label>
+    <br>
+	  <label>Bowling: </label>
 	  <b>{{teamData.to_bowl}}</b>
   </div>
 
   <div>
-     <a ng-if="gameData[gameData.length-1].over != 2" class="btn btn-primary" ng-click="bowl()" >Bowl</a>
+     <a ng-if="gameData[gameData.length-1].over != 2" 
+        href="#/play/{{gameData[gameData.length-1].over}}/{{gameData[gameData.length-1].ball}}"
+        class="btn btn-primary" ng-click="bowl()">
+        Bowl
+     </a>
+     <!-- <a ng-if="gameData[gameData.length-1].over != 2" 
+        class="btn btn-primary" ng-click="bowl()">
+        Bowl
+     </a> -->
      <a ng-if="gameData[gameData.length-1].over == 2" class="btn btn-danger" href="#/start" ng-click="resetData()" >Finish</a>
      <a class="btn btn-success" ng-click="resetData()" href="#/start" >New Game</a>
   </div>
