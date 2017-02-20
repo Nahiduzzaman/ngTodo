@@ -32,9 +32,10 @@ angular
             controller: 'PlayCtrl'
         })
         .state('play-history', {
-            url: '/play/:time/:over/:ball',
+            url: '/play/:over/:ball',
             templateUrl: 'views/play-history.html',
-            controller: 'PlayCtrl'
+            controller: 'PlayCtrl',
+            reload: true
         });
 
         $locationProvider.hashPrefix('');      
@@ -140,8 +141,8 @@ angular
                 }
                 total_run = total_run + run;
 
-                console.log('final','Overs: '+over+'.'+number_of_ball,'Score: '+score, 'RPB: '+run, 'Total: '+total_run,'Wicket:'+wicket, 'Comments:'+comments );
-                console.log(number_of_ball)
+                //console.log('final','Overs: '+over+'.'+number_of_ball,'Score: '+score, 'RPB: '+run, 'Total: '+total_run,'Wicket:'+wicket, 'Comments:'+comments );
+                //console.log(number_of_ball)
                 gameData = {
                     ball: number_of_ball<0 ? 5:number_of_ball,
                     over: number_of_ball<0 ? ((over-1)<1 ? 0:(over-1)):over,
@@ -152,27 +153,27 @@ angular
                     comments: comments
                 }
                 statistics.push(gameData);
-                console.log('statistics',statistics);
+                //console.log('statistics',statistics);
                 return statistics;
             },
 
             get: function(ball,over,data) {
-                console.log('ball',ball);
-                console.log('over',over);
-                console.log('data',data);
+                //console.log('ball',ball);
+                //console.log('over',over);
+                //console.log('data',data);
                 if(data){
                    var scoresbyball = $filter('filter')(data, {'ball':ball,'over':over});
                    console.log('scoresbyballArray',scoresbyball);
-                   var indexOfScore = data.indexOf(scoresbyball[scoresbyball.length-1]);
-                   scoresbyball[scoresbyball.length-1].indexOfScore = indexOfScore;
-                   console.log('scoresbyball',scoresbyball[scoresbyball.length-1]);
+                   //var indexOfScore = data.indexOf(scoresbyball[scoresbyball.length-1]);
+                   //scoresbyball[scoresbyball.length-1].indexOfScore = indexOfScore;
+                   //console.log('scoresbyball',scoresbyball[scoresbyball.length-1]);
                    return scoresbyball[scoresbyball.length-1];
                 }
             }
         }
     });
 
-
+   
 
 
 

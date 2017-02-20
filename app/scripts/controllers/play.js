@@ -8,7 +8,7 @@
  * Controller of the todoApp
  */
 angular.module('todoApp')
-    .controller('PlayCtrl', function ($stateParams,StatisticService,$scope,$window) {
+    .controller('PlayCtrl', function ($stateParams,StatisticService,$scope,$window,$state) {
         var gameData = [];
         $scope.resetData = function(){
             console.log('removeItem');
@@ -20,25 +20,37 @@ angular.module('todoApp')
       	
       	$scope.teamData = JSON.parse(localStorage.getItem("teamData"));
       	console.log('teamData',$scope.teamData);
+        var call = 0
+        $scope.recall = function(){
+            console.log('call',call++)
+            $scope.gameData = JSON.parse(localStorage.getItem("gameData"));
+            console.log('gameData in recall',$scope.gameData);
+        }
 
       	$scope.bowl = function(){
       		gameData = StatisticService.play();
       		localStorage.setItem("gameData", JSON.stringify(gameData));
-      		$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
-            $scope.seconds  = new Date().getTime() / 1000;
-            $stateParams.time = $scope.seconds;
+      		//$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
+            $scope.recall();
       		console.log('gameData',$scope.gameData);
-           
-          
+             
           /*$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
           console.log('getStats',$scope.getStats);*/
       	}
 
-      	//$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
+        $scope.recall();
+
+        $scope.sendIndex = function(item,idx){
+            $scope.getStats = item;
+            $scope.idx = idx;
+        }
+        
 
         //console.log('stateparam_ball',$stateParams.ball)
 
       	$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
       	console.log('getStats',$scope.getStats); 	    
     });
+
+    angular.bootstrap(document.body, ['todoApp']);
 
