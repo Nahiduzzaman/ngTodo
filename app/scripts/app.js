@@ -35,7 +35,6 @@ angular
             url: '/play/:over/:ball',
             templateUrl: 'views/play-history.html',
             controller: 'PlayCtrl',
-            reload: true
         });
 
         $locationProvider.hashPrefix('');      
@@ -162,11 +161,14 @@ angular
                 //console.log('over',over);
                 //console.log('data',data);
                 if(data){
-                   var scoresbyball = $filter('filter')(data, {'ball':ball,'over':over});
-                   console.log('scoresbyballArray',scoresbyball);
-                   //var indexOfScore = data.indexOf(scoresbyball[scoresbyball.length-1]);
-                   //scoresbyball[scoresbyball.length-1].indexOfScore = indexOfScore;
-                   //console.log('scoresbyball',scoresbyball[scoresbyball.length-1]);
+                    var scoresbyball = $filter('filter')(data, {'ball':ball,'over':over});
+                    console.log('scoresbyballArray',scoresbyball);
+                    //var indexOfScore = data.indexOf(scoresbyball[scoresbyball.length-1]);
+                    scoresbyball.forEach(function(item){
+                        item.indexOfScore = data.indexOf(item);
+                        console.log('item',item);     
+                    })
+                   console.log('scoresbyball',scoresbyball[scoresbyball.length-1]);
                    return scoresbyball[scoresbyball.length-1];
                 }
             }

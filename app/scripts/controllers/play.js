@@ -24,6 +24,7 @@ angular.module('todoApp')
         $scope.recall = function(){
             console.log('call',call++)
             $scope.gameData = JSON.parse(localStorage.getItem("gameData"));
+            //$scope.inital_limit = $scope.gameData.length;
             console.log('gameData in recall',$scope.gameData);
         }
 
@@ -31,9 +32,14 @@ angular.module('todoApp')
       		gameData = StatisticService.play();
       		localStorage.setItem("gameData", JSON.stringify(gameData));
       		//$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
-            $scope.recall();
+          $scope.recall();
       		console.log('gameData',$scope.gameData);
-             
+          if($scope.gameData[$scope.gameData.length-1].score == 'WD' || $scope.gameData[$scope.gameData.length-1].score == 'NB' ){
+            console.log('oops');
+            //$state.go('play-history');
+            $state.go($state.current, {}, {reload: true});
+
+          }              
           /*$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
           console.log('getStats',$scope.getStats);*/
       	}
@@ -42,7 +48,7 @@ angular.module('todoApp')
 
         $scope.sendIndex = function(item,idx){
             $scope.getStats = item;
-            $scope.idx = idx;
+            console.log('getStats in  sendIndex',$scope.getStats);
         }
         
 

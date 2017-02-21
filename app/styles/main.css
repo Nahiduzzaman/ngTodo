@@ -94,8 +94,8 @@ form { margin: 0 auto; width: 36% }
 
 table {
   display: block;
-  /* height: 400px;
-  overflow-y: scroll; */
+   height: 400px;
+  overflow-y: scroll; 
 }
 
 .btn-warning {
