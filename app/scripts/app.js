@@ -26,11 +26,6 @@ angular
             templateUrl: 'views/start.html',
             controller: 'StartCtrl'
         })
-        .state('play', {
-            url: '/play',
-            templateUrl: 'views/play.html',
-            controller: 'PlayCtrl'
-        })
         .state('play-history', {
             url: '/play/:over/:ball',
             templateUrl: 'views/play-history.html',
@@ -40,6 +35,7 @@ angular
         $locationProvider.hashPrefix('');      
     })
     .service('StatisticService', function($filter) {
+        var matches = [];
         var scoreArray = [0,1,2,3,4,6,'W','WD','NB'];
         if(JSON.parse(localStorage.getItem("gameData")) == null){
             var statistics = [];
@@ -95,7 +91,7 @@ angular
                     comments = 'Wide delivery way outside off stamp!';
                     break;
                 case 'NB':
-                    comments = 'No Ball! another extra run added to the scoreboard';
+                    comments = 'No Ball! extra run added to the scoreboard';
                     break;
                 case 'W':
                     comments = 'Out! a wicket fall';
@@ -172,10 +168,17 @@ angular
                    return scoresbyball[scoresbyball.length-1];
                 }
             }
+
+            /*newgame: function(){
+                var teamData_for_match = JSON.parse(localStorage.getItem("teamData"));
+                var gameData_for_match = JSON.parse(localStorage.getItem("gameData"));
+                
+            }*/
         }
     });
 
    
+
 
 
 

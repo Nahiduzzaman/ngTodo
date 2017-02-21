@@ -14,48 +14,32 @@ angular.module('todoApp')
             console.log('removeItem');
             $scope.gameData = localStorage.removeItem("gameData");
             $scope.teamData = localStorage.removeItem("teamData");
-            gameData = [];
             $window.location.reload();
         }
       	
       	$scope.teamData = JSON.parse(localStorage.getItem("teamData"));
       	console.log('teamData',$scope.teamData);
-        var call = 0
-        $scope.recall = function(){
-            console.log('call',call++)
-            $scope.gameData = JSON.parse(localStorage.getItem("gameData"));
-            //$scope.inital_limit = $scope.gameData.length;
-            console.log('gameData in recall',$scope.gameData);
-        }
-
+      
       	$scope.bowl = function(){
       		gameData = StatisticService.play();
       		localStorage.setItem("gameData", JSON.stringify(gameData));
-      		//$scope.gameData = JSON.parse(localStorage.getItem("gameData"));
-          $scope.recall();
+            $scope.gameData = JSON.parse(localStorage.getItem("gameData"));
       		console.log('gameData',$scope.gameData);
-          if($scope.gameData[$scope.gameData.length-1].score == 'WD' || $scope.gameData[$scope.gameData.length-1].score == 'NB' ){
-            console.log('oops');
-            //$state.go('play-history');
-            $state.go($state.current, {}, {reload: true});
-
+            if($scope.gameData[$scope.gameData.length-1].score == 'WD' || $scope.gameData[$scope.gameData.length-1].score == 'NB' ){
+            $state.reload();
           }              
-          /*$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
-          console.log('getStats',$scope.getStats);*/
       	}
 
-        $scope.recall();
+        $scope.gameData = JSON.parse(localStorage.getItem("gameData")); //it shows when controller reinitialize after route changed
 
         $scope.sendIndex = function(item,idx){
             $scope.getStats = item;
             console.log('getStats in  sendIndex',$scope.getStats);
         }
-        
-
-        //console.log('stateparam_ball',$stateParams.ball)
-
+ 
       	$scope.getStats = StatisticService.get($stateParams.ball,$stateParams.over,$scope.gameData);
-      	console.log('getStats',$scope.getStats); 	    
+      	console.log('getStats',$scope.getStats); 
+
     });
 
     angular.bootstrap(document.body, ['todoApp']);

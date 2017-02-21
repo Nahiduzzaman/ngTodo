@@ -8,16 +8,14 @@
     </div>
 
     <div>
-        <a href="#/play/{{gameData[gameData.length-1].over}}/{{gameData[gameData.length-1].ball}}"
-          class="btn btn-primary" ng-click="bowl()">
-          Bowl
+        <a ng-hide="gameData[gameData.length-1].over == 2" 
+           href="#/play/{{gameData[gameData.length-1].over}}/{{gameData[gameData.length-1].ball}}"
+           class="btn btn-primary" ng-click="bowl()">
+           Bowl
         </a>
         <a ng-if="gameData[gameData.length-1].over == 2" class="btn btn-danger" href="#/start" ng-click="resetData()" >Finish</a>
         <a class="btn btn-warning" href="#/play/{{gameData[gameData.length-1].over}}/{{gameData[gameData.length-1].ball}}">Full Scorecard</a>
-    </div>
-
- 
-    >>{{showhistory}}         
+    </div>        
    <table class="table table-striped">
         <thead>
             <tr>
@@ -29,7 +27,6 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in gameData | limitTo: getStats.indexOfScore+1">
-            <td>{{$index}}</td>
                 <td><a href="#/play/{{item.over}}/{{item.ball}}" ng-click="sendIndex(item)">{{item.over}}.{{item.ball}}</a></td>
                 <td>{{item.run_per_ball}}</td>
                 <td>{{item.score}}</td>
